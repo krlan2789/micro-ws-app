@@ -1,6 +1,6 @@
 # Building a Real-Time Application with µWebSockets.js
 
-Real-time applications enable instant communication and updates. This guide walks you through building a WebSocket-based app using [µWebSockets.js](https://github.com/uNetworking/uWebSockets.js) instead of Express.js.
+Real-time applications enable instant communication and updates. This guide walks you through building a WebSocket-based app using [uWebSockets.js](https://github.com/uNetworking/uWebSockets.js) instead of Express.js.
 
 ## Prerequisites
 
