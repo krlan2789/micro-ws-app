@@ -1,0 +1,31 @@
+{
+  "name": "micro-ws-app",
+  "version": "1.0.0",
+  "description": "Node.js Project - Sample WebSocket Server uWebSockets.js",
+  "author": "krlan2789",
+  "main": "src/server.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "ts-node src/server.ts",
+    "dev": "nodemon --watch src/**/*.ts --exec node --loader ts-node/esm src/server.ts",
+    "preinstall": "npx npm-force-resolutions",
+    "build": "tsc"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=20.18.0",
+    "npm": ">=10.8.0"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.2",
+    "pg": "^8.16.3",
+    "uWebSockets.js": "github:uNetworking/uWebSockets.js#v20.52.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.5.2",
+    "@types/pg": "^8.15.5",
+    "nodemon": "^3.1.10",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2"
+  }
+}
