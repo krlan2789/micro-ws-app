@@ -1,10 +1,22 @@
-# Building a Real-Time Application with µWebSockets.js
+# Building a Fast Real-Time Application with µWebSockets.js
 
-Real-time applications enable instant communication and updates. This guide walks you through building a WebSocket-based app using [uWebSockets.js](https://github.com/uNetworking/uWebSockets.js) instead of Express.js.
+Real-time applications are revolutionizing the way we interact with technology, enabling instantaneous communication and updates. At the core of these systems lies WebSocket technology, which facilitates seamless two-way communication between clients and servers. In this article, we will delve into the process of building a WebSocket-based application using [uWebSockets.js](https://github.com/uNetworking/uWebSockets.js), covering everything from prerequisites to deployment.
+
+## Why Choose µWebSockets.js Over Express.js + ws?
+
+While Express.js combined with the `ws` (WebSocket Standard) library is a popular choice for building WebSocket applications, µWebSockets.js offers several advantages that make it ideal for high-performance, real-time systems:
+
+- **Performance**: µWebSockets.js is engineered for speed and efficiency, handling significantly more concurrent connections and messages than Express.js + ws.
+- **Low Latency**: Its optimized C++ core delivers lower latency, making it suitable for applications where real-time responsiveness is critical.
+- **Resource Efficiency**: µWebSockets.js consumes less memory and CPU, allowing you to scale your application with fewer resources.
+- **Built-in Features**: It provides advanced features like native SSL support, per-message compression, and automatic ping/pong handling out of the box.
+- **Scalability**: Designed for large-scale deployments, µWebSockets.js can handle millions of simultaneous connections with minimal overhead.
+
+For applications demanding maximum throughput and minimal delay—such as chat systems, live dashboards, or multiplayer games—µWebSockets.js is a superior choice.
 
 ## Prerequisites
 
-Ensure you have the following installed:
+Before diving into the setup, ensure you have the following tools and versions installed:
 
 - **NodeJS**: `20.18.0`
 - **NPM**: `10.8.2`
@@ -12,41 +24,51 @@ Ensure you have the following installed:
 - **uWebSockets.js**: `20.52.0`
 - **PostgreSQL**: `12.14`
 
+These tools form the backbone of the application, enabling efficient development and database management.
+
 ## Setting Up the Project
 
-### 1. Cloning the Repository
+### Step 1: Cloning the Repository
 
-Clone your project repository:
+Begin by cloning the project repository to your local machine. This repository contains all the necessary files and configurations to get started:
 
-```bash
-git clone https://github.com/krlan2789/micro-ws-app.git
+```shell
+$ git clone https://github.com/krlan2789/micro-ws-app.git
 ```
 
-### 2. Navigating to the Project Directory
+### Step 2: Navigating to the Project Directory
 
-```bash
-cd micro-ws-app
+Once cloned, navigate to the project directory:
+
+```shell
+$ cd micro-wss-app
 ```
 
-### 3. Installing Dependencies
+### Step 3: Installing Dependencies
 
-```bash
-npm install
+Install the required dependencies using NPM. This ensures that all necessary packages are available for the application:
+
+```shell
+$ npm install
+```
+
+Alternatively, you can use the shorthand command:
+
+```shell
+$ npm i
 ```
 
 ## Configuring the Database
 
-### 1. Creating an Environment File
+To enable database connectivity, follow these steps:
 
-Copy example.env to .env in the project root:
+### Step 1: Creating an Environment File
 
-```bash
-cp example.env .env
-```
+Duplicate the `example.env` file or create a new `.env` file in the project root directory. This file will store your application and database settings.
 
-### 2. Updating the Configuration
+### Step 2: Updating the Configuration
 
-Edit .env with your database and app settings:
+Edit the `.env` file with your specific database credentials and application settings:
 
 ```ini
 APP_PORT=3006
@@ -62,52 +84,63 @@ DB_MAX_CONNECTION=16
 DB_IDLE_TIMEOUT=30000
 ```
 
+These configurations ensure seamless communication between the application and the PostgreSQL database.
+
 ## Running the Application
 
-### 1. Ensure You’re in the Project Directory
+With the setup complete, you can now run the application. Choose the appropriate mode based on your requirements:
 
-```bash
-cd micro-ws-app
+### Step 1: Navigating to the Project Directory
+
+Ensure you are in the project directory:
+
+```shell
+$ cd micro-wss-app
 ```
 
-### 2. Starting the Application
+### Step 2: Starting the Application
 
-- **Development Mode**:
+- **Development Mode**: Ideal for testing and debugging during development.
 
-   ```bash
-   npm run dev
+   ```shell
+   $ npm run dev
    ```
 
-- **Production Mode**:
+- **Production Mode**: Suitable for deploying the application in a live environment.
 
-   ```bash
-   npm start
+   ```shell
+   $ npm start
    ```
 
-- **Production Mode with PM2** (if configured):
+- **Production Mode with PM2**: For enhanced process management, use PM2 (requires installation).
 
-   ```bash
-   npm run start:pm2
+   ```shell
+   $ npm start:pm2
    ```
 
-### 3. Testing the WebSocket Connection
+### Step 3: Testing the WebSocket Connection
 
-Connect using a WebSocket client to:
+To verify the WebSocket functionality, use a WebSocket testing tool and connect using the following URL format:
 
+```http
+[ws/wss]://[ip/hostname]:[port]?token=user_token
 ```
-ws://localhost:3006?token=your_token
-```
 
-Or run the test script (if available):
+#### Example URLs:
 
-```bash
-npm run test:ws
+- **HTTP**: `ws://localhost:8765?token=user1240635408404344554`
+- **HTTPS**: `wss://localhost:8765?token=user1240635408404344554`
+
+Alternatively, you can run the following command to test the WebSocket connection:
+
+```shell
+$ npm run test:ws
 ```
 
 ## Deploying the Application
 
-For deployment instructions, refer to [this deployment note](https://erlankurnia.github.io/note/2/WebSocket%20Service%20on%20VPS).
+Deploying the application to a VPS or cloud hosting environment is straightforward. For detailed instructions, refer to [this deployment note](https://erlankurnia.github.io/note/2/WebSocket%20Service%20on%20VPS).
 
 ## Conclusion
 
-You now have a working real-time WebSocket app but much faster, ready for features like chat, notifications, or collaboration.
+By following this guide, you can efficiently set up and run a WebSocket-based application using µWebSockets.js. This setup is perfect for building real-time features such as chat applications, live notifications, or collaborative tools. With WebSocket technology, the possibilities for creating dynamic and interactive applications are endless.
