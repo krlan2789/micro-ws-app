@@ -9,7 +9,7 @@ Ensure you have the following installed:
 - **NodeJS**: `20.18.0`
 - **NPM**: `10.8.2`
 - **TypeScript**: `5.9.2`
-- **µWebSockets.js**: `20.52.0`
+- **uWebSockets.js**: `20.52.0`
 - **PostgreSQL**: `12.14`
 
 ## Setting Up the Project
