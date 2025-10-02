@@ -5,10 +5,17 @@ import type { IUserData } from '../models/IUserData.ts';
 import DateHelper from '../utils/date_helper.ts';
 import { config } from '../utils/config.ts';
 
-export const registerRoutes: uWS.WebSocketBehavior<IUserData> = {
-    maxPayloadLength: config.uws.maxPayloadLength,
-    idleTimeout: config.uws.idleTimeout,
-    upgrade: (res: uWS.HttpResponse, req: uWS.HttpRequest, context) => {
+export class WebSocketHandler implements uWS.WebSocketBehavior<IUserData> {
+    topicToSubcribe: string = 'broadcast';
+    maxPayloadLength: number;
+    idleTimeout: number;
+
+    constructor() {
+        this.maxPayloadLength = config.uws.maxPayloadLength;
+        this.idleTimeout = config.uws.idleTimeout;
+    }
+
+    upgrade(res: uWS.HttpResponse, req: uWS.HttpRequest, context: any) {
         console.log('Upgrading connection...');
         let aborted = false;
         res.onAborted(() => {
@@ -41,17 +48,19 @@ export const registerRoutes: uWS.WebSocketBehavior<IUserData> = {
                 console.warn('Exception: ' + e.message);
                 if (!aborted) res.cork(() => res.end('Exception: ' + e.message));
             });
-    },
-    open: (ws: uWS.WebSocket<IUserData>) => {
-        ws.subscribe('global');
-    },
-    message: (ws: uWS.WebSocket<IUserData>, message: ArrayBuffer, isBinary: boolean) => {
+    }
+
+    open(ws: uWS.WebSocket<IUserData>) {
+        ws.subscribe(this.topicToSubcribe);
+    }
+
+    message(ws: uWS.WebSocket<IUserData>, message: ArrayBuffer, isBinary: boolean) {
         const payload = Buffer.from(message).toString();
         const { token } = ws.getUserData();
         db.query('INSERT INTO websocket_log (token, message, date_created) VALUES ($1, $2, $3)', [token, payload, DateHelper.getCurrentDate()])
             .then(() => {
                 try {
-                    ws.publish('global', JSON.stringify(payload));
+                    ws.publish(this.topicToSubcribe, JSON.stringify(payload));
                 } catch (e) {
                     console.warn(e);
                 }
@@ -65,8 +74,11 @@ export const registerRoutes: uWS.WebSocketBehavior<IUserData> = {
                     console.warn(e);
                 }
             });
-    },
-    // close: (ws: uWS.WebSocket<IUserData>, code: number, reason: ArrayBuffer) => {
-    //     const { token } = ws.getUserData();
-    // }
+    }
+
+    close(ws: uWS.WebSocket<IUserData>, code: number, reason: ArrayBuffer) {
+        ws.unsubscribe(this.topicToSubcribe);
+    }
 };
+
+export default new WebSocketHandler();
