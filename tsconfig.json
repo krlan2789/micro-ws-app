@@ -5,8 +5,8 @@
     "resolveJsonModule": true,
     "rootDir": "./src",
     "outDir": "./dist",
-    // "module": "node16",
-    "module": "ESNext",
+    // Use Node's ESM handling so tsc emits .js extensions for runtime imports
+    "module": "nodenext",
     // "target": "esnext",
     "target": "ES2020",
     "types": [],
@@ -22,13 +22,21 @@
     "moduleDetection": "force",
     "esModuleInterop": true,
     "skipLibCheck": true,
-    // "moduleResolution": "nodenext",
-    "moduleResolution": "bundler",
-    "noEmit": true,
-    "allowImportingTsExtensions": true,
+    // resolve imports using Node.js ESM resolution
+    "moduleResolution": "nodenext",
+    // Keep tsc emitting JS for runtime; do not import .ts extensions in emitted code
+    "noEmit": false,
+    "allowImportingTsExtensions": false,
     "forceConsistentCasingInFileNames": true
   },
   "include": [
-    "src/**/*.ts"
+    "src"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "test",
+    "error",
+    "**/*.spec.ts"
   ]
 }

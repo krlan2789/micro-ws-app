@@ -1,6 +1,6 @@
-import { db } from '../persistences/db.ts';
+import { Repository } from '../persistences/repository.js';
 
 export async function verifyToken(token: string): Promise<string | null> {
-    const result = await db.query('SELECT token FROM tb_token WHERE token = $1', [token]);
-    return Promise.resolve(result.rows[0]?.token || null);
+    const result = await Repository.getUserByUsername(token);;
+    return Promise.resolve(result[0]?.username || null);
 }

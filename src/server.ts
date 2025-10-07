@@ -1,7 +1,7 @@
 import uWS from 'uWebSockets.js';
-import websocket from './routes/websocket_handler.ts';
-import type { IUserData } from './models/IUserData.ts';
-import { config } from './utils/config.ts';
+import websocket from './routes/websocket_handler.js';
+import type { IUserData } from './models/IUserData.js';
+import { config } from './utils/config.js';
 
 const port = config.port ?? 3000;
 

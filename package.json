@@ -6,7 +6,7 @@
   "main": "src/server.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "ts-node src/server.ts",
+    "start": "node dist/server.js",
     "dev": "nodemon --watch src/**/*.ts --exec node --loader ts-node/esm src/server.ts",
     "preinstall": "npx npm-force-resolutions",
     "build": "tsc"

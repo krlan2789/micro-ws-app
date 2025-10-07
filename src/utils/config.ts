@@ -1,5 +1,5 @@
 import 'dotenv/config';
-import type { IAppConfig } from '../models/IAppConfig';
+import type { IAppConfig } from '../models/IAppConfig.js';
 
 function getEnv(key: string, fallback?: string): string {
     const value = process.env[key];
