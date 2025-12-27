@@ -1,3 +1,11 @@
+---
+title: "Building a Real-Time Application with uWebSockets.js"
+description: "WebSocket Service project using Node.js, TypeScript, uWebSockets.js, and PostgresQL."
+date: "2025-09-23"
+tags: ["node","node.js","uwebsockets.js","websocket","postgresql"]
+github: "https://github.com/krlan2789/micro-ws-app"
+---
+
 # Building a Fast Real-Time Application with µWebSockets.js
 
 Real-time applications are revolutionizing the way we interact with technology, enabling instantaneous communication and updates. At the core of these systems lies WebSocket technology, which facilitates seamless two-way communication between clients and servers. In this article, we will delve into the process of building a WebSocket-based application using [uWebSockets.js](https://github.com/uNetworking/uWebSockets.js), covering everything from prerequisites to deployment.
@@ -102,21 +110,21 @@ $ cd micro-wss-app
 
 - **Development Mode**: Ideal for testing and debugging during development.
 
-   ```shell
-   $ npm run dev
-   ```
+	```shell
+	$ npm run dev
+	```
 
 - **Production Mode**: Suitable for deploying the application in a live environment.
 
-   ```shell
-   $ npm start
-   ```
+	```shell
+	$ npm start
+	```
 
 - **Production Mode with PM2**: For enhanced process management, use PM2 (requires installation).
 
-   ```shell
-   $ npm start:pm2
-   ```
+	```shell
+	$ npm start:pm2
+	```
 
 ### Step 3: Testing the WebSocket Connection
 
@@ -139,7 +147,7 @@ $ npm run test:ws
 
 ## Deploying the Application
 
-Deploying the application to a VPS or cloud hosting environment is straightforward. For detailed instructions, refer to [this deployment note](https://erlankurnia.github.io/note/2/WebSocket%20Service%20on%20VPS).
+Deploying the application to a VPS or cloud hosting environment is straightforward. For detailed instructions, refer to [this (Nginx)](/secure-websocket-service-on-vps-using-nginx) or [this (Apache)](/secure-websocket-service-on-vps-using-apache) deployment notes.
 
 ## Conclusion
 
