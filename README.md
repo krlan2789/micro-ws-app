@@ -1,11 +1,3 @@
----
-title: "Building a Real-Time Application with uWebSockets.js"
-description: "WebSocket Service project using Node.js, TypeScript, uWebSockets.js, and PostgresQL."
-date: "2025-09-23"
-tags: ["node","node.js","uwebsockets.js","websocket","postgresql"]
-github: "https://github.com/krlan2789/micro-ws-app"
----
-
 # Building a Fast Real-Time Application with µWebSockets.js
 
 Real-time applications are revolutionizing the way we interact with technology, enabling instantaneous communication and updates. At the core of these systems lies WebSocket technology, which facilitates seamless two-way communication between clients and servers. In this article, we will delve into the process of building a WebSocket-based application using [uWebSockets.js](https://github.com/uNetworking/uWebSockets.js), covering everything from prerequisites to deployment.
